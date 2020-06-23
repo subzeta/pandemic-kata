@@ -16,7 +16,7 @@ for any interaction and person willing to leave its house.
 
 As you know, the world is under a global pandemic. The ideas to set the spread stopped are as follows:
 
-* Every country has its rules.
+* Every country has its time slot rules.
 * Every person has an age value denoting the age grouping: child, adult, old.
 * Every person has a health condition value denoting the health state: risky, healthy.
 * Every person pertains to a family.
