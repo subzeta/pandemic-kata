@@ -1,56 +1,78 @@
-kata/php
-========
+# subzeta/pandemic-kata
 
-PHP skeleton for doing coding katas
------------------------------------
+Based upon https://github.com/carlosbuenosvinos/php-kata skeleton.
 
-*Code Kata* is a term coined by Dave Thomas, co-author of the book
-The Pragmatic Programmer, in a bow to the Japanese concept of kata
-in the martial arts. A code kata is an exercise in programming which
-helps a programmer hone their skills through practice and repetition.
-As of October 2011, Dave Thomas has published 21 different katas.
+## How to
 
-You can find some to start practicing [here](http://codingdojo.org/cgi-bin/index.pl?KataCatalogue).
+1. Clone this project.
+2. Add your classes to 'src' and your test cases to 'tests'. 
+3. Run 'php bin/phpunit' to run your tests.
 
-When you do programming katas, you use TDD. That's why I have included
-PHPUnit, Mockery, PHPSpec and Prophecy as composer dependencies. Choose
-the testing framework you feel more comfortable (or play with both).
+## Pandemic Kata
 
-Practicing a kata
-=================
+Welcome to the Pandemic Kata. As you may know, we are a public research laboratory called every 
+time the world fights against any disease. We have been recruited by the OMS to set the common rules 
+for any interaction and person willing to leave its house. 
 
-Let's imagine you want to practice "Bowling game kata". Details about
-this kata can be found [here](http://codingdojo.org/cgi-bin/wiki.pl?KataBowling).
+As you know, the world is under a global pandemic. The ideas to set the spread stopped are as follows:
 
-You will need composer.
+* Every person has an age value denoting the age grouping: child, adult, old.
+* Every person has a health condition value denoting the health state: risky, healthy.
+* Every person pertains to a family.
+* Each age has a time slot to go outside (morning, noon, afternoon).
 
-    curl -sS https://getcomposer.org/installer | php
+Pretty simple, right? Well this is where it gets interesting:
 
-Then, use "create-project" command to clone this project as a template
-and create a new one in your computer.
+* You are allowed to go out only on your time slot.
+* Children (max 3) must go outside with a healthy adult. The child time slot commands over the adult one.
+* A risky-health person must go outside with a healthy adult. The risky-health person time slot commands over the adult one.
 
-    php composer.phar create-project kata/php bowling-kata dev-master
+### Age time slots
 
-Then add your classes to 'src/Kata' and your test cases to
-'src/Kata/Tests' and run 'php bin/phpunit' to run your tests.
+| Age        | Time slot    |
+| ------------- |-------------|
+| Child      | 9am - 12am (morning) | 
+| Adult      | 12am - 17pm (noon)      | 
+| Old/risky  | 17pm - 21pm (afternoon)      | 
 
-    php bin/phpunit
+### Your task
+As you may see, this is messed up for a large family having six kids and a risky-health person in charge. 
+We must develop a brand new evaluator system to help this family figure out how to see the sun with the minimum time
+slots consuming. This process receives a set of family members and just outputs the time slots along with the members 
+allowed to go outside.
 
-TestCase examples
-=================
+For example:
 
-If you run 'php bin/phpunit' you will see the following output.
+```
+[
+    [
+        'age'           => 'adult',
+        'health-status' => 'healthy',
+    ],
+    [
+        'age'           => 'child',
+        'health-status' => 'healthy',
+    ],
+]
+```
 
-    PHPUnit 3.8-gc4f2bcd by Sebastian Bergmann.
-    
-    Configuration read from /Users/carlosbuenosvinos/Documents/Web/bowling/phpunit.xml
-    
-    ...
-    
-    Time: 91 ms, Memory: 1.75Mb
-    OK (3 tests, 3 assertions)
+Should output:
 
-That's because you will find one class and its TestCase in the project
-in order to help you. You can delete them.
+```
+[
+    'morning' => [
+        [
+            [
+                'age'           => 'adult',
+                'health-status' => 'healthy',
+            ],
+            [
+                'age'           => 'child',
+                'health-status' => 'healthy',
+            ],
+        ]
+    ]
+]
+```
 
-Adder is a class that adds two numbers and AdderTest tests that.
+Any doubts? Just ask. Have fun!
