@@ -26,6 +26,7 @@ Pretty simple, right? Well this is where it gets interesting:
 * You are allowed to go out only on your time slot.
 * Children (max 3) must go outside with a healthy adult. The child time slot commands over the adult one.
 * A risky-health person must go outside with a healthy adult. The risky-health person time slot commands over the adult one.
+* Healthy adults cannot group.
 
 ### Age time slots
 
